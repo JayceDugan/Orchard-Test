@@ -47,18 +47,19 @@ body {
 }
 
 // Letter Spacing
-.xs-letter-spacing { letter-spacing: var(--xs-letter-spacing); }
-.md-letter-spacing { letter-spacing: var(--md-letter-spacing); }
+.letter-spacing--xs { letter-spacing: var(--xs-letter-spacing); }
+.letter-spacing--md { letter-spacing: var(--md-letter-spacing); }
 
 // Font families
 .headings-font-family { font-family: var(--headings-font-family); }
 .content-font-family { font-family: var(--content-font-family); }
 
-// Font Weights
 
-// Note: These are scss variables as opposed to css
-// variables as it's rare someone would want to change
+// Note: The below have been chosen as SCSS instead of css
+// variables as it's rare someone would want to modify or
 // these variables on the fly. So pre-compiled is fine here.
+
+// Font Weights
 $weight_variants: (
   'thin': 100,
   'light': 300,
@@ -74,4 +75,12 @@ $weight_variants: (
   }
 }
 
+// Text Transformations
+$text_transform_variants: 'uppercase', 'lowercase', 'capitalize';
+
+@each $transform_variant in $text_transform_variants {
+  .text-transform--#{$transform_variant} {
+    text-transform: #{$transform_variant};
+  }
+}
 </style>
