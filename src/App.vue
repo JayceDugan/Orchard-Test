@@ -182,4 +182,10 @@ img {
   max-width: 100%;
   object-fit: cover;
 }
+
+.text--restricted {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 </style>

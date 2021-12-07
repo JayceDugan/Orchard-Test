@@ -9,9 +9,9 @@
         <content-block v-else class="block" data-cy="content-block">
           <template v-slot:feature>
             <section class="image-tiles" data-cy="image-tiles">
-              <image-modal-item image="Image-01.jpg" />
-              <image-modal-item image="Image-02.jpg" />
-              <image-modal-item image="Image-03.jpg" />
+              <image-modal-item image="Image-04.jpg" />
+              <image-modal-item image="Image-05.jpg" />
+              <image-modal-item image="Image-06.jpg" />
             </section>
           </template>
           <template v-slot:content>
@@ -113,12 +113,13 @@ export default {
 
 .image-tiles {
   display: grid;
-  grid-rows: repeat(3, minmax(384px, auto));
+  grid-template-rows: repeat(3, 384px);
   grid-template-columns: minmax(100%, 1fr);
   grid-row-gap: 20px;
   grid-column-gap: 24px;
 
-  img {
+  ::v-deep img {
+    height: 100%;
     object-fit: cover;
     width: 100%;
   }

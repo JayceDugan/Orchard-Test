@@ -6,7 +6,8 @@
   >
     <img :src="require(`@/assets/${image}`)" class="card__image" data-cy="news-feed-item-image" :alt="alt" />
 
-    <h3 class="card__title text--white font-weight-bold" data-cy="news-feed-item-title">{{ title }}</h3>
+    <h3 class="card__title text--white font-weight-bold text--restricted" data-cy="news-feed-item-title">{{ title
+      }}</h3>
     <p class="card__caption text--secondary mb-5">{{ caption }}</p>
     <orchard-button
       link
