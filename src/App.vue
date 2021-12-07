@@ -6,7 +6,6 @@
 
 <style lang="scss">
 :root {
-
   // Generic Colors
   --red: #CF1430;
   --grey: #C2C2C2;
@@ -67,6 +66,11 @@ body {
 .text--secondary {
   color: var(--theme-secondary);
 }
+
+.text-h2 {
+  font-size: 42px;
+}
+
 // Note: The below have been chosen as SCSS instead of css
 // variables as it's rare someone would want to modify or
 // these variables on the fly. So pre-compiled is fine here.

@@ -4,7 +4,7 @@
     data-cy="news-feed"
   >
     <h2
-      class="text-h2 text--white letter-spacing--md text--center"
+      class="text-h2 text--white letter-spacing--md text--center mb-15 text-transform--uppercase font-weight-light"
       data-cy="news-feed-title"
     >
       {{ title }}
