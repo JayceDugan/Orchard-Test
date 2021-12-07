@@ -1,10 +1,14 @@
 <template>
   <div id="app">
+    <h1 class="text--center mb-16">Orchard - Technical Test.</h1>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+$font-size-mobile-base: 14;
+$font-size-base: 16;
+
 :root {
   // Generic Colors
   --red: #CF1430;
@@ -19,18 +23,26 @@
   --headings-font-weight: 300;
 
   // Typography
-  --font-size-base: 16;
+  --font-size-base: #{$font-size-mobile-base};
   --content-font-family: 'Open Sans';
   --content-font-weight: 300;
 
   // Utility variables
   --xs-letter-spacing: 0.5px;
   --md-letter-spacing: 0.81px;
+
+  @media all and (min-width: 767px) {
+    --font-size-base: $font-size-base;
+  }
 }
 
 // General Resets
 * {
   box-sizing: border-box !important;
+}
+
+body {
+  padding: 50px 0;
 }
 
 html,
@@ -39,7 +51,10 @@ body {
   font-size: calc(var(--font-size-base) * 1px);
   background: #0E1414;
   color: #FFF;
+  margin: 0;
 }
+
+p { margin-top: 0; }
 
 @for $i from 1 through 6 {
   h#{$i},
@@ -47,6 +62,7 @@ body {
     font-family: var(--headings-font-family, 'Open Sans');
     font-weight: var(--headings-font-weight, 300);
     letter-spacing: var(--headings-letter-spacing, 0);
+    margin-top: 0;
   }
 }
 
@@ -67,8 +83,9 @@ body {
   color: var(--theme-secondary);
 }
 
-.text-h2 {
-  font-size: 42px;
+.body-2 {
+  font-size: (18 / 16) * 1rem;
+  line-height: (30 / 18);
 }
 
 // Note: The below have been chosen as SCSS instead of css
@@ -88,6 +105,22 @@ $weight_variants: (
 @each $variant, $weight in $weight_variants {
   .font-weight-#{$variant} {
     font-weight: $weight;
+  }
+}
+
+$heading_font_sizes: (
+  h1: 40,
+  h2: 42,
+  h3: 34,
+  h4: 26,
+  h5: 18,
+  h6: 16,
+);
+
+@each $heading_tag, $heading_font_size in $heading_font_sizes {
+  #{$heading_tag},
+  .text-#{$heading_tag} {
+    font-size: ($heading_font_size / $font-size-base) * 1rem;
   }
 }
 
@@ -134,5 +167,18 @@ $spacing_base: 4;
   .pr-#{$i} { padding-right: $spacing-value; }
   .pb-#{$i} { padding-bottom: $spacing-value; }
   .pl-#{$i} { padding-left: $spacing-value; }
+}
+
+.title-underlined {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #FFF;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
 }
 </style>

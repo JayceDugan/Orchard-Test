@@ -12,7 +12,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding: 0 15px;
   margin: 0 auto;
   width: 100%;
 
@@ -33,7 +32,7 @@ export default {
   }
 
   @media all and (min-width: 1440px) {
-    max-width: 1320px;
+    max-width: 1200px;
   }
 }
 </style>

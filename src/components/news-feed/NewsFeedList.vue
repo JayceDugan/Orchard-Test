@@ -35,7 +35,8 @@ export default {
 
   display: grid;
   grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(auto-fill, 384px);
+  grid-template-columns: repeat(auto-fill, minmax(0, 384px));
   grid-gap: var(--news-feed-grid-gap);
+  justify-content: center;
 }
 </style>
