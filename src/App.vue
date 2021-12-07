@@ -35,6 +35,8 @@
 html,
 body {
   font-size: 16px;
+  background: #0E1414;
+  color: #FFF;
 }
 
 @for $i from 1 through 6 {
@@ -76,11 +78,20 @@ $weight_variants: (
 }
 
 // Text Transformations
-$text_transform_variants: 'uppercase', 'lowercase', 'capitalize';
+$text_transform_variants: uppercase, lowercase, capitalize;
 
 @each $transform_variant in $text_transform_variants {
   .text-transform--#{$transform_variant} {
     text-transform: #{$transform_variant};
+  }
+}
+
+// Text Alignment
+$text_alignment_variants: center, left, right;
+
+@each $text_alignment_variant in $text_alignment_variants {
+  .text--#{$text_alignment_variant} {
+    text-align: $text_alignment_variant;
   }
 }
 </style>
