@@ -180,5 +180,6 @@ $spacing_base: 4;
 
 img {
   max-width: 100%;
+  object-fit: cover;
 }
 </style>

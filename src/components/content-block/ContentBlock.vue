@@ -22,8 +22,8 @@ export default {
   grid-template-columns: minmax(0, 1fr);
   grid-gap: 24px;
 
-  @media all and (min-width: 991px) {
-    grid-template-columns: minmax(792px, 8fr) minmax(400px, 4fr);
+  @media all and (min-width: 1220px) {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
   }
 }
 </style>

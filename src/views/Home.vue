@@ -9,25 +9,28 @@
         <content-block v-else class="block" data-cy="content-block">
           <template v-slot:feature>
             <section class="image-tiles" data-cy="image-tiles">
-              <img src="@/assets/Image-01.jpg" />
-              <img src="@/assets/Image-02.jpg" />
-              <img src="@/assets/Image-03.jpg" />
+              <image-modal-item image="Image-01.jpg" />
+              <image-modal-item image="Image-02.jpg" />
+              <image-modal-item image="Image-03.jpg" />
             </section>
           </template>
           <template v-slot:content>
             <h3
-                class="text-h4 title-underlined text-transform--uppercase font-weight-light"
-                data-cy="content-block-title"
+              class="text-h4 title-underlined text-transform--uppercase font-weight-light"
+              data-cy="content-block-title"
             >
               {{ content.title }}
             </h3>
 
-            <p class="text--secondary body-2" data-cy="content-block-description">
+            <p
+              class="text--secondary body-2"
+              data-cy="content-block-description"
+            >
               {{ content.description }}
             </p>
             <p
-                class="text--capitalize text--primary mb-3 text-transform--uppercase"
-                data-cy="content-block-subtitle"
+              class="text--capitalize text--primary mb-3 text-transform--uppercase"
+              data-cy="content-block-subtitle"
             >
               {{ content.subtitle }}
             </p>
@@ -45,6 +48,7 @@
 import Container from '@/components/layout/Container'
 import NewsFeed from '@/components/news-feed/NewsFeed'
 import ContentBlock from '@/components/content-block/ContentBlock'
+import ImageModalItem from '@/components/layout/ImageModalItem'
 
 const fakeContent = {
   title: "Answer Your Body's Needs",
@@ -62,7 +66,8 @@ export default {
   components: {
     NewsFeed,
     Container,
-    ContentBlock
+    ContentBlock,
+    ImageModalItem
   },
   data: () => ({
     loading: true,
@@ -110,7 +115,8 @@ export default {
   display: grid;
   grid-rows: repeat(3, minmax(384px, auto));
   grid-template-columns: minmax(100%, 1fr);
-  grid-gap: 24px;
+  grid-row-gap: 20px;
+  grid-column-gap: 24px;
 
   img {
     object-fit: cover;
@@ -124,6 +130,11 @@ export default {
     & > :first-child {
       grid-row: 1 / 3;
       height: 100%;
+
+      ::v-deep .image-modal-item__image {
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 }
