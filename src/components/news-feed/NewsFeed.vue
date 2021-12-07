@@ -10,7 +10,9 @@
       {{ title }}
     </h2>
 
-    <component :is="activeDisplay" />
+    <fade-transition>
+      <component :is="activeDisplay" />
+    </fade-transition>
   </section>
 </template>
 
@@ -53,3 +55,4 @@ export default {
   }
 }
 </script>
+

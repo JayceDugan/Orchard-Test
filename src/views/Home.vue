@@ -1,26 +1,42 @@
 <template>
   <div class="home">
     <container>
-      <content-block class="block">
-        <template v-slot:feature>
-          <section class="image-tiles">
-            <img src="@/assets/Image-01.jpg" />
-            <img src="@/assets/Image-02.jpg" />
-            <img src="@/assets/Image-03.jpg" />
-          </section>
-        </template>
-        <template v-slot:content>
-          <h3 class="text-h4 title-underlined text-transform--uppercase font-weight-light">{{ content.title }}</h3>
+      <fade-transition>
+        <section v-if="loading" class="text--center block">
+          <loading-spinner />
+        </section>
 
-          <p class="text--secondary body-2">
-            {{ content.description }}
-          </p>
-          <p class="text--capitalize text--primary mb-3 text-transform--uppercase">{{ content.subtitle }}</p>
-          <p class="text--white body-2">{{ content.subdescription }}</p>
-        </template>
-      </content-block>
+        <content-block v-else class="block" data-cy="content-block">
+          <template v-slot:feature>
+            <section class="image-tiles" data-cy="image-tiles">
+              <img src="@/assets/Image-01.jpg" />
+              <img src="@/assets/Image-02.jpg" />
+              <img src="@/assets/Image-03.jpg" />
+            </section>
+          </template>
+          <template v-slot:content>
+            <h3
+                class="text-h4 title-underlined text-transform--uppercase font-weight-light"
+                data-cy="content-block-title"
+            >
+              {{ content.title }}
+            </h3>
 
-      <news-feed />
+            <p class="text--secondary body-2" data-cy="content-block-description">
+              {{ content.description }}
+            </p>
+            <p
+                class="text--capitalize text--primary mb-3 text-transform--uppercase"
+                data-cy="content-block-subtitle"
+            >
+              {{ content.subtitle }}
+            </p>
+            <p class="text--white body-2" data-cy="content-block-subdescription">{{ content.subdescription }}</p>
+          </template>
+        </content-block>
+      </fade-transition>
+
+      <news-feed class="block" />
     </container>
   </div>
 </template>
@@ -30,6 +46,17 @@ import Container from '@/components/layout/Container'
 import NewsFeed from '@/components/news-feed/NewsFeed'
 import ContentBlock from '@/components/content-block/ContentBlock'
 
+const fakeContent = {
+  title: "Answer Your Body's Needs",
+  description: "The way ingredients are sourced affects the way we nourish our bodies. " +
+      "Author Mark Schatzer believes our body naturally devolops an appetite for the foods " +
+      "and nutrients it needs to be healthy, but that artificial flavourings are getting in the way." +
+      " This can be reversed by focusing on high-quality ingredients and being mindful as your appetite" +
+      " guides you to consume according to your body's needs.",
+  subtitle: "Be Mindful",
+  subdescription: "Sourcing local or organic food is a good way to start being more mindful about what you're cooking and eating.",
+}
+
 export default {
   name: 'Home',
   components: {
@@ -38,17 +65,35 @@ export default {
     ContentBlock
   },
   data: () => ({
-    content: {
-      title: "Answer Your Body's Needs",
-      description: "The way ingredients are sourced affects the way we nourish our bodies. " +
-      "Author Mark Schatzer believes our body naturally devolops an appetite for the foods " +
-      "and nutrients it needs to be healthy, but that artificial flavourings are getting in the way." +
-      " This can be reversed by focusing on high-quality ingredients and being mindful as your appetite" +
-      " guides you to consume according to your body's needs.",
-      subtitle: "Be Mindful",
-      subdescription: "Sourcing local or organic food is a good way to start being more mindful about what you're cooking and eating.",
+    loading: true,
+    failedLoading: false,
+    content: {}
+  }),
+  async mounted() {
+    this.content = await this.loadContent()
+  },
+  methods: {
+    // some fetch call
+    loadContent() {
+      return new Promise((resolve) => {
+        try {
+          this.loading = true
+          this.failedLoading = false
+
+          setTimeout(() => {
+            this.loading = false
+            resolve(fakeContent)
+          }, 3000, fakeContent)
+
+        } catch (err) {
+          console.error(err.message)
+          this.loading = false
+          this.failedLoading = true
+          resolve(fakeContent)
+        }
+      })
     }
-  })
+  }
 }
 </script>
 
@@ -57,8 +102,8 @@ export default {
   padding: 15px;
 }
 
-.block:not(:last-of-type) {
-  margin-bottom: 232px;
+.block:not(:first-of-type) {
+  margin-top: 232px;
 }
 
 .image-tiles {
