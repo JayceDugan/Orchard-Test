@@ -6,6 +6,7 @@
 
 <style lang="scss">
 :root {
+
   // Generic Colors
   --red: #CF1430;
   --grey: #C2C2C2;
@@ -18,7 +19,8 @@
   --headings-font-family: 'Open Sans';
   --headings-font-weight: 300;
 
-  // Content
+  // Typography
+  --font-size-base: 16;
   --content-font-family: 'Open Sans';
   --content-font-weight: 300;
 
@@ -34,7 +36,8 @@
 
 html,
 body {
-  font-size: 16px;
+  font-family: var(--content-font-family);
+  font-size: calc(var(--font-size-base) * 1px);
   background: #0E1414;
   color: #FFF;
 }
@@ -56,7 +59,14 @@ body {
 .headings-font-family { font-family: var(--headings-font-family); }
 .content-font-family { font-family: var(--content-font-family); }
 
+// Typography Colors
+.text--primary {
+  color: var(--theme-primary);
+}
 
+.text--secondary {
+  color: var(--theme-secondary);
+}
 // Note: The below have been chosen as SCSS instead of css
 // variables as it's rare someone would want to modify or
 // these variables on the fly. So pre-compiled is fine here.
@@ -93,5 +103,32 @@ $text_alignment_variants: center, left, right;
   .text--#{$text_alignment_variant} {
     text-align: $text_alignment_variant;
   }
+}
+
+$cursor_variants: pointer;
+
+@each $cursor_variant in $cursor_variants {
+  .cursor--#{$cursor_variant} {
+    cursor: $cursor_variant;
+  }
+}
+
+// Margins
+$spacing_base: 4;
+
+@for $i from 1 through 16 {
+  $spacing-value: ($i * $spacing_base) * 1px;
+
+  .ma-#{$i} { margin: $spacing-value; }
+  .mt-#{$i} { margin-top: $spacing-value; }
+  .mr-#{$i} { margin-right: $spacing-value; }
+  .mb-#{$i} { margin-bottom: $spacing-value; }
+  .ml-#{$i} { margin-left: $spacing-value; }
+
+  .pa-#{$i} { padding: $spacing-value; }
+  .pt-#{$i} { padding-top: $spacing-value; }
+  .pr-#{$i} { padding-right: $spacing-value; }
+  .pb-#{$i} { padding-bottom: $spacing-value; }
+  .pl-#{$i} { padding-left: $spacing-value; }
 }
 </style>
